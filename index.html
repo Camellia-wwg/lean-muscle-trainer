@@ -146,6 +146,23 @@ input:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px;bor
 .how.on{display:block}
 .how b{color:var(--t1);font-weight:600}
 
+.badbox{
+  margin:var(--s3) 0 0;padding:var(--s3);border-radius:var(--r1);
+  background:var(--warn-soft);color:var(--t2);line-height:1.6;
+}
+.badbox b{color:var(--warn);font-weight:600}
+.vbtn{
+  display:flex;align-items:center;justify-content:center;gap:var(--s2);
+  min-height:var(--s7);margin-top:var(--s3);
+  border-radius:var(--r1);border:1.5px solid var(--line2);background:var(--panel);
+  color:var(--accent);font-size:var(--f2);font-weight:600;text-decoration:none;
+}
+.vbtn:active{opacity:.85}
+.vlnk{
+  color:var(--accent);font-size:var(--f1);text-decoration:none;
+  white-space:nowrap;font-weight:600;
+}
+
 /* ===== 按钮 ===== */
 .btn{
   font-family:inherit;font-size:var(--f3);font-weight:600;min-height:var(--s7);
@@ -330,30 +347,41 @@ let CFG=Object.assign({},DEF,LS.get('cfg',{}));
 function saveCfg(){LS.set('cfg',CFG)}
 
 /* ==================== 内容 ==================== */
-const WARM=['手腕前后绕环各 15 圈（有大鱼际压迫痛的话必做）','手腕屈伸拉伸每侧 20 秒','猫牛式 10 次','靠墙天使 10 次','臀桥 15 次','原地高抬腿 30 秒'];
-const COOL=['胸小肌门框拉伸每侧 30 秒','髂腰肌弓步拉伸每侧 30 秒（久坐人群别跳）','仰卧腹式呼吸 10 次，吸 4 秒呼 6 秒'];
+const WARM=[
+ {t:'手腕前后绕环各 15 圈（有大鱼际压迫痛的话必做）'},
+ {t:'手腕屈伸拉伸每侧 20 秒',q:'手腕拉伸 教学'},
+ {t:'猫牛式 10 次',q:'猫牛式 教学'},
+ {t:'靠墙天使 10 次',q:'靠墙天使 教学'},
+ {t:'臀桥 15 次',q:'臀桥 教学'},
+ {t:'原地高抬腿 30 秒'}
+];
+const COOL=[
+ {t:'胸小肌门框拉伸每侧 30 秒',q:'胸部 门框拉伸'},
+ {t:'髂腰肌弓步拉伸每侧 30 秒（久坐人群别跳）',q:'髂腰肌拉伸 教学'},
+ {t:'仰卧腹式呼吸 10 次，吸 4 秒呼 6 秒',q:'腹式呼吸 教学'}
+];
 const LNAME=['L1','L2','L3','L4','L5'];
 const LPCT=[40,48,57,65,70];
 const EX={
 A:[
- {n:'斜面俯卧撑',s:4,r:'8-15',key:1,h:'双手撑在比地面高的稳固平面上，身体从头到脚跟一条直线，胸口下到离支撑面一拳，再推起来。<b>不要用转椅或带扶手的椅子</b>，前者会滑，后者扶手会顶住手腕。软坐垫也不行，撑上去会塌。'},
- {n:'单臂划船',s:4,r:'8-12 每侧',h:'找个有提手的重物，装满水的桶或塞满书的书包都行。一手扶稳固支撑物，身体前倾到接近水平，背保持平直不弓，另一手把重物从地面拉到腰侧，肘部贴身走。<b>拉到顶时肩胛骨主动往后夹一下</b>，这是重点。'},
- {n:'保加利亚分腿蹲',s:3,r:'8-12 每侧',h:'背对椅子站好，后脚脚背搭在座面上，前腿单腿下蹲到大腿与地面平行，再起来。一只手扶墙保持平衡完全可以。'},
- {n:'死虫式',s:3,r:'10 每侧',h:'平躺，两手伸向天花板，两腿抬起屈膝 90 度。<b>腰始终紧贴地面不许拱起</b>，右手和左腿同时向远处伸直，收回，换另一边。'},
- {n:'俯卧 YTW',s:2,r:'8 每字母',h:'趴地上额头轻触，手臂依次摆成 Y、T、W 三个字母，每个形状抬离地面停 2 秒再放下。<b>久坐人群全表里对体态最重要的一个动作。</b>'}
+ {n:'斜面俯卧撑',s:4,r:'8-15',key:1,q:'上斜俯卧撑 教学',h:'双手撑在比地面高的稳固平面上，身体从头到脚跟一条直线，胸口下到离支撑面一拳，再推起来。<b>不要用转椅或带扶手的椅子</b>，前者会滑，后者扶手会顶住手腕。软坐垫也不行，撑上去会塌。',bad:'<b>最常见的错</b>：屁股撅起来或者腰塌下去，只下到一半就推，脖子往前伸去够支撑面。<br><b>自查</b>：手机架在侧面录一组，回放时从肩到脚踝应该是一条直线，胸口要真的下到接近支撑面。'},
+ {n:'单臂划船',s:4,r:'8-12 每侧',q:'单臂哑铃划船 教学',h:'找个有提手的重物，装满水的桶或塞满书的书包都行。一手扶稳固支撑物，身体前倾到接近水平，背保持平直不弓，另一手把重物从地面拉到腰侧，肘部贴身走。<b>拉到顶时肩胛骨主动往后夹一下</b>，这是重点。',bad:'<b>最常见的错</b>：用胳膊硬拽而不是用背拉，身体跟着扭转借力，后背弓成虾米。<br><b>自查</b>：拉到最高点时，应该是肩胛骨后面那块在发力发酸，不是小臂酸。酸在小臂说明重量太大了。'},
+ {n:'保加利亚分腿蹲',s:3,r:'8-12 每侧',q:'保加利亚分腿蹲 教学',h:'背对椅子站好，后脚脚背搭在座面上，前腿单腿下蹲到大腿与地面平行，再起来。一只手扶墙保持平衡完全可以。',bad:'<b>最常见的错</b>：前脚离椅子太近，蹲下去膝盖顶得难受；重心压在后腿上，前腿没吃到力。<br><b>自查</b>：前脚要踩得够远，蹲到最低时小腿大致垂直于地面，发力的是前腿大腿和屁股。'},
+ {n:'死虫式',s:3,r:'10 每侧',q:'死虫式 教学',h:'平躺，两手伸向天花板，两腿抬起屈膝 90 度。<b>腰始终紧贴地面不许拱起</b>，右手和左腿同时向远处伸直，收回，换另一边。',bad:'<b>最常见的错</b>：手脚伸出去的时候腰离地拱起来，这时候练的是腰不是核心。<br><b>自查</b>：把一只手掌塞在腰下面，全程要一直感觉腰压着手。一旦压不住就说明伸得太远，收回来一点。'},
+ {n:'俯卧 YTW',s:2,r:'8 每字母',q:'俯卧YTW 教学',h:'趴地上额头轻触，手臂依次摆成 Y、T、W 三个字母，每个形状抬离地面停 2 秒再放下。<b>久坐人群全表里对体态最重要的一个动作。</b>',bad:'<b>最常见的错</b>：靠抬头挺胸把整个上半身撑起来，脖子和腰在代偿。<br><b>自查</b>：额头基本不离地，抬起来的只有手臂，感觉集中在两块肩胛骨之间。这个动作重量很轻，别追求抬多高。'}
 ],
 B:[
- {n:'斜面俯卧撑离心',s:4,r:'5-8',key:1,h:'跟 A1 同样的姿势和高度，但<b>只做下放不做推起</b>：用 4 秒极慢降到底，然后用膝盖撑地站起来回到起点。离心能承受的负荷比向心高约三成，这是涨力量最快的一招。'},
- {n:'划船（二选一）',s:4,r:'8-12',h:'<b>首选桌下反向划船</b>：平躺在结实的桌子下，双手抓桌沿<b>靠近桌腿</b>的位置拉起。<b>第一次务必测试</b>：坐地上慢慢加力上拉，桌子有任何翘起迹象立刻放弃，另一侧压重物会更稳。<br><b>测试不过就用加重单臂划船</b>：比 A 日更重、次数更少。'},
- {n:'停顿深蹲',s:3,r:'12-20',h:'双脚与肩同宽脚尖略外八，下蹲到大腿与地面平行，<b>最低点停 2 秒</b>再起来。脚跟全程不离地，膝盖别内扣。'},
- {n:'侧平板',s:3,r:'20-45 秒每侧',h:'侧躺用一侧手肘撑地把身体撑起，从头到脚一条直线，<b>髋部不许往下掉</b>。撑到快掉下去就停，换边。'},
- {n:'单腿臀桥',s:3,r:'10-15 每侧',h:'平躺屈膝，一条腿伸直抬起，用另一条腿蹬地把臀部顶到最高，顶峰夹紧臀部停 1 秒再落下。<b>对抗久坐导致的骨盆前倾和小腹前凸。</b>'}
+ {n:'斜面俯卧撑离心',s:4,r:'5-8',key:1,q:'上斜俯卧撑 教学',h:'跟 A1 同样的姿势和高度，但<b>只做下放不做推起</b>：用 4 秒极慢降到底，然后用膝盖撑地站起来回到起点。离心能承受的负荷比向心高约三成，这是涨力量最快的一招。',bad:'<b>最常见的错</b>：降得太快，两秒就到底了，等于白做。<br><b>自查</b>：心里默数四个数才落到底，越慢越有效。降到底之后一定用膝盖撑起来，不要硬推回去。'},
+ {n:'划船（二选一）',s:4,r:'8-12',q:'反向划船 教学',h:'<b>首选桌下反向划船</b>：平躺在结实的桌子下，双手抓桌沿<b>靠近桌腿</b>的位置拉起。<b>第一次务必测试</b>：坐地上慢慢加力上拉，桌子有任何翘起迹象立刻放弃，另一侧压重物会更稳。<br><b>测试不过就用加重单臂划船</b>：比 A 日更重、次数更少。',bad:'<b>最常见的错</b>：屁股掉下去变成只有上半身在动，手抓在桌子中间导致桌面受力翘起。<br><b>自查</b>：从肩到脚跟一条直线，拉到胸口接近桌沿。手一定抓在靠近桌腿的地方，那里最结实。'},
+ {n:'停顿深蹲',s:3,r:'12-20',q:'徒手深蹲 教学',h:'双脚与肩同宽脚尖略外八，下蹲到大腿与地面平行，<b>最低点停 2 秒</b>再起来。脚跟全程不离地，膝盖别内扣。',bad:'<b>最常见的错</b>：脚跟离地踮起来，膝盖往内夹，蹲到一半就起来。<br><b>自查</b>：手机正面录一组，膝盖全程要对着脚尖的方向，不能往里倒。脚跟离地的话把脚尖再往外转一点，或者站宽一点。'},
+ {n:'侧平板',s:3,r:'20-45 秒每侧',q:'侧平板支撑 教学',h:'侧躺用一侧手肘撑地把身体撑起，从头到脚一条直线，<b>髋部不许往下掉</b>。撑到快掉下去就停，换边。',bad:'<b>最常见的错</b>：撑久了腰往下沉，或者身体前后倒不在一个平面上。<br><b>自查</b>：宁可时间短也要保持直线。感觉髋开始往下掉就立刻停，掉着硬撑没有意义。撑不住可以先用膝盖着地的版本。'},
+ {n:'单腿臀桥',s:3,r:'10-15 每侧',q:'单腿臀桥 教学',h:'平躺屈膝，一条腿伸直抬起，用另一条腿蹬地把臀部顶到最高，顶峰夹紧臀部停 1 秒再落下。<b>对抗久坐导致的骨盆前倾和小腹前凸。</b>',bad:'<b>最常见的错</b>：用腰往上顶而不是用屁股，顶到最高时腰是酸的。<br><b>自查</b>：顶到最高点应该是屁股酸胀，不是后腰酸。腰酸就把脚往屁股方向收近一点，然后先夹紧屁股再往上顶。'}
 ],
 M:[
- {n:'斜面俯卧撑',s:3,r:'8-12',h:'强度降到平时八成，不追次数。'},
- {n:'徒手深蹲',s:3,r:'15-20',h:'正常节奏，不停顿。'},
- {n:'平板支撑',s:3,r:'30-45 秒',h:'不塌腰不翘臀。'},
- {n:'臀桥',s:3,r:'15-20',h:'顶峰夹紧臀部停 1 秒。'}
+ {n:'斜面俯卧撑',s:3,r:'8-12',q:'上斜俯卧撑 教学',h:'强度降到平时八成，不追次数。'},
+ {n:'徒手深蹲',s:3,r:'15-20',q:'徒手深蹲 教学',h:'正常节奏，不停顿。'},
+ {n:'平板支撑',s:3,r:'30-45 秒',q:'平板支撑 教学',h:'不塌腰不翘臀。'},
+ {n:'臀桥',s:3,r:'15-20',q:'臀桥 教学',h:'顶峰夹紧臀部停 1 秒。'}
 ]};
 const MEALS=[
  {n:'早餐',kc:'735 千卡 · 蛋白 42 克',i:[['鸡蛋（水煮或煎）','3 个'],['全麦面包，抹花生酱 1 汤匙','3 片'],['常温纯牛奶','300 ml']]},
@@ -467,9 +495,23 @@ let openEx=-1;
 function progressOf(dk,t){const l=EX[t];if(!l)return[0,0];let d=0,s=0;
   for(let i=0;i<l.length;i++){s+=l[i].s;d+=LS.get(sk(dk,t,i),[]).length}return[d,s]}
 function firstUndone(dk,t){const l=EX[t];for(let i=0;i<l.length;i++){if(LS.get(sk(dk,t,i),[]).length<l[i].s)return i}return -1}
+function everTrained(){
+  try{return Object.keys(localStorage).some(function(k){
+    if(k.indexOf('bj_set_')!==0)return false;
+    try{return JSON.parse(localStorage.getItem(k)).length>0}catch(e){return false}
+  })}catch(e){return true}
+}
+function vurl(q){return 'https://search.bilibili.com/all?keyword='+encodeURIComponent(q)}
+function vlnk(q){return '<a class="vlnk" href="'+vurl(q)+'" target="_blank" rel="noopener">看演示</a>'}
+function vbtn(q){return '<a class="vbtn" href="'+vurl(q)+'" target="_blank" rel="noopener">▶ 看真人演示视频</a>'}
+function howBody(e){
+  return '<div class="how">'+e.h
+    +(e.bad?'<div class="badbox">'+e.bad+'</div>':'')
+    +(e.q?vbtn(e.q):'')+'</div>';
+}
 function foldBlock(title,sub,items){
   return '<details class="fold panel"><summary>'+title+'<span class="sub">'+sub+'</span><span class="chev">▾</span></summary>'
-    +'<div class="body"><ul>'+items.map(x=>'<li>'+x+'</li>').join('')+'</ul></div></details>';
+    +'<div class="body"><ul>'+items.map(x=>'<li>'+x.t+(x.q?' '+vlnk(x.q):'')+'</li>').join('')+'</ul></div></details>';
 }
 function drawToday(){
   const s=sessionOf(today);let h='';
@@ -491,6 +533,7 @@ function drawToday(){
   if(t==='M')h+='<div class="note warn"><b>打乱期维持方案。</b>目标不是进步，是不掉。强度降到平时八成，不追任何数字。</div>';
   if(canLevelUp()&&t!=='M')h+='<div class="note good"><h3>该进阶了</h3>上次四组都做到 15 次以上，'+LNAME[CFG.level-1]+' 对你已经太轻。'
     +'<button class="btn block" style="margin-top:var(--s3)" onclick="levelUp()">进阶到 '+(LNAME[CFG.level]||'完成')+'</button></div>';
+  if(!everTrained())h+='<div class="note info"><h3>第一次练，先别管次数</h3>今天的目标是把动作学会，不是把格子填满。每个动作点开怎么做，先看一遍真人演示视频，再空手比划两三次找到发力的地方，然后才开始正式做。第一次少做几个完全没关系，动作错了练一个月也是白练。</div>';
   h+='<div class="gt">热身</div>'+foldBlock('热身','6 分钟 · 必做',WARM);
   h+='<div class="gt">主体</div><div class="panel">'+EX[t].map(function(e,i){
     const done=LS.get(sk(TK,t,i),[]),all=done.length>=e.s,cur=LS.get(rk(TK,t,i),''),lr=lastReps(t,i);
@@ -506,7 +549,7 @@ function drawToday(){
         +'<div class="field">'+(lr?'<div class="lastv">上次 '+lr.d.slice(5)+'　'+esc(lr.v)+'</div>':'')
         +'<input type="text" inputmode="numeric" placeholder="本次各组次数，如 9/8/8/7" value="'+esc(cur)+'" onchange="noteReps(\''+TK+'\',\''+t+'\','+i+',this.value)"></div>'
         +'<button class="howtog" onclick="this.nextElementSibling.classList.toggle(\'on\')">怎么做 ▾</button>'
-        +'<div class="how">'+e.h+'</div>'
+        +howBody(e)
       +'</div></div>';
   }).join('')+'</div>';
   h+='<div class="gt">收尾</div>'+foldBlock('收尾','4 分钟',COOL);
@@ -541,7 +584,9 @@ function drawPlan(){
     h+='<div class="gt">清单 '+t+'　'+(t==='A'?'推力与拉力':'核心与下肢')+'</div><div class="panel">'
       +EX[t].map(function(e,i){
         return '<details class="fold rowline"><summary>'+(i+1)+'　'+e.n+'<span class="sub">'+e.s+'×'+e.r+'</span><span class="chev">▾</span></summary>'
-          +'<div class="body"><p style="font-size:var(--f2);color:var(--t2);line-height:1.6;margin:var(--s3) 0 var(--s2)">'+e.h+'</p></div></details>';
+          +'<div class="body"><p style="font-size:var(--f2);color:var(--t2);line-height:1.6;margin:var(--s3) 0 var(--s2)">'+e.h+'</p>'
+          +(e.bad?'<div class="badbox">'+e.bad+'</div>':'')
+          +(e.q?vbtn(e.q):'')+'</div></details>';
       }).join('')+'</div>';
   });
   h+='<div class="gt">热身与收尾</div>'+foldBlock('热身','6 分钟',WARM)+foldBlock('收尾','4 分钟',COOL);
