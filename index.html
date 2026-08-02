@@ -464,14 +464,59 @@ function weekCost(){
     LS.set('shopv',SHOPV);
   }
 }catch(e){}})();
-const PREP=[
- ['0 分钟','<b>先按电饭煲。</b>下 3 碗米的量（生米约 300 克），加水到刻度，按下开关，之后不用管。'],
- ['2 分钟','<b>腌肉。</b>去骨鸡腿肉 500 克，加生抽 2 勺、料酒 1 勺、蒜末，抓匀放旁边。'],
- ['7 分钟','<b>切菜。</b>西兰花掰小朵，胡萝卜切片。只用耐放的，叶菜三天会烂。'],
- ['10 分钟','<b>煎肉，不要反复翻。</b>平底锅少油，肉皮朝下，中火 6 分钟，翻一次面再 6 分钟。'],
- ['22 分钟','<b>同一口锅接着炒菜，不用洗锅。</b>肉盛出，用锅里剩的油下蔬菜，加半碗水盖盖焖 4 分钟，加盐。'],
- ['28 分钟','<b>等凉透。</b>必须凉到室温再装盒盖盖，热的直接盖会积水汽加速变质。这步不能省。'],
- ['35 分钟','<b>装盒冷藏。</b>三个<b>方形</b>饭盒，各装 1 碗饭 1 份肉 1 份菜。']
+const PELVIC={
+ sets:3,
+ q:'凯格尔运动 男性 教学',
+ h:'深层核心的一部分，管骨盆稳定和排尿控制，久坐人群普遍薄弱。坐着站着都能做，外表看不出来。<br><b>先找到这块肌肉</b>：小便时能中断尿流的那块，或者站着收缩肛门、感觉睾丸被轻微提起。<b>找到之后就别再靠中断小便来练</b>，反复这么做可能影响膀胱排空。<br><b>做法</b>：收缩 3 秒，完全放松 3 秒，10 次算一组，每天 3 组，早中晚各一组。<br>练熟之后可以加一组快的：1 秒收 1 秒放，连做 10 次。',
+ bad:'<b>最常见的错</b>：腹部、大腿、屁股跟着一起使劲，那样练的是别的肌肉。还有憋气，全程要正常呼吸。<br><b>自查</b>：一只手放在小腹上，收缩时手底下不应该有明显鼓起或收紧。只有会阴那一处在动才对。<br><b>见效时间</b>：6 到 12 周，别指望几天有感觉。'
+};
+const PREPDOC=[
+ {t:'开火前：从超市回来那 10 分钟',k:'list',x:[
+  '<b>生肉当场分装。</b>买回来的 1.1kg，切出 500 克今天做饭盒，剩下 600 克按 150 克分成 4 小袋。这两天要吃的放冷藏，其余冷冻',
+  '<b>生熟分开。</b>切过生肉的刀和板，不洗干净不许切别的。最省事的办法是先切菜再切肉',
+  '<b>生肉放冰箱最下层</b>，避免血水滴到下面的东西上',
+  '蔬菜洗好切好装盒，这几天做晚餐直接下锅，省事'
+ ]},
+ {t:'需要什么家伙',k:'list',x:[
+  '电饭煲、平底锅（不粘的最好）、菜刀、菜板、保鲜袋、4 个方形饭盒',
+  '<b>没有电饭煲也能办</b>：微波炉煮饭，或者直接买速食米饭，贵一点但省事'
+ ]},
+ {t:'35 分钟主流程',k:'step',x:[
+  ['0 分钟','<b>先按电饭煲。</b>生米约 300 克，洗两遍，水加到没过米面约一指节，按下开关，之后不用管。<br><b>煮好别马上开盖，焖 5 分钟</b>，不然底下容易夹生。'],
+  ['2 分钟','<b>腌肉。</b>去骨鸡腿肉 500 克，加生抽 2 勺、料酒 1 勺、蒜末 3 瓣，抓匀放旁边。腌到你切完菜正好。'],
+  ['7 分钟','<b>切菜。</b>西兰花掰小朵，胡萝卜切片。只用耐放的，叶菜三天会烂。'],
+  ['10 分钟','<b>煎肉，不要反复翻。</b>平底锅少油，肉皮朝下，中火 6 分钟<b>一下都别动</b>，翻一次面再 6 分钟。<br><b>怎么判断熟了</b>：最厚的地方切开，肉汁清澈不带血水就是熟了。还带粉红血水就再煎 2 分钟。<br><b>为什么不能反复翻</b>：翻多了肉出水，变成煮肉，又柴又不香。'],
+  ['22 分钟','<b>同一口锅接着炒菜，不用洗锅。</b>肉盛出来，用锅里剩的油和肉汁下蔬菜，加半碗水盖盖焖 4 分钟，加盐。'],
+  ['28 分钟','<b>等凉透，这步不能省。</b>热的直接盖盖会积水汽，加速变质。<br><b>怎么判断</b>：手背贴着盒底不烫就行，大概 20 到 30 分钟。摊开凉，别堆一起。'],
+  ['35 分钟','<b>装盒冷藏。</b>三个<b>方形</b>饭盒，各装 1 碗饭、三分之一的肉、三分之一的菜。']
+ ]},
+ {t:'四种调味，每次换一种',k:'dl',x:[
+  ['蒜香生抽','生抽 2 勺、料酒 1 勺、蒜末 3 瓣，腌 10 分钟再煎'],
+  ['黑胡椒','生抽 1 勺、黑胡椒粉半勺、蒜末，腌好煎；出锅前再撒一次黑胡椒'],
+  ['孜然','只用盐腌；煎到快好时撒孜然粉 1 勺，翻两下就出锅'],
+  ['咖喱','肉煎好后加 1 块咖喱块和半碗水，小火煮 3 分钟收汁']
+ ]},
+ {t:'晚餐那 600 克怎么做　12 分钟',k:'step',x:[
+  ['0 分钟','拿一袋 150 克的肉出来，切块。冷冻的提前一晚移到冷藏解冻。'],
+  ['2 分钟','<b>平底锅中火煎 10 分钟</b>，换一种调味，跟午餐饭盒错开口味。'],
+  ['10 分钟','配头天备好的菜，微波 2 分钟热一下。'],
+  ['12 分钟','米饭当天煮，或者备餐时多煮一碗冷藏，晚餐直接热。']
+ ]},
+ {t:'能放几天，怎么热',k:'list',x:[
+  '<b>冷藏 3 天内吃完，第 4 天的直接扔</b>，别赌',
+  '所以一周备两次：<b>周日备 3 盒管周一二三，周三晚上备 3 盒管周四五六</b>，周日你在家吃',
+  '<b>微波高火 3 分钟，中途拿出来搅一下</b>，不然边上烫中间还是凉的',
+  '<b>盖子必须掀开或者留缝</b>，盖死了会炸',
+  '闻着发酸、摸着发黏、表面有白点，一律扔掉，别可惜'
+ ]},
+ {t:'新手最容易翻车的 6 个点',k:'num',x:[
+  '反复翻肉，出水变煮肉，又柴又不香',
+  '热的直接盖盖装盒，两天就馊',
+  '用生菜菠菜这类叶菜备餐，三天全烂',
+  '一次备满六天，后三天已经不安全了',
+  '微波时盖子盖死，气压会把盖子顶开甚至炸裂',
+  '饭盒装太满，中间热不透'
+ ]}
 ];
 const EATTIPS=[
  ['液体不占胃','喝不下饭的时候用牛奶和花生酱补热量，比硬塞米饭容易'],
@@ -563,6 +608,37 @@ function howBody(e){
     +(e.bad?'<div class="badbox">'+e.bad+'</div>':'')
     +(e.q?vbtn(e.q):'')+'</div>';
 }
+function pkey(d){return 'pf_'+d}
+function pelvicBlock(){
+  const done=LS.get(pkey(TK),[]);
+  return '<div class="gt">盆底肌训练　每天做</div><div class="panel" style="padding:var(--s4)">'
+    +'<div class="presc">'+PELVIC.sets+' 组 × 10 次　收 3 秒，放 3 秒</div>'
+    +'<div class="sets">'+Array.from({length:PELVIC.sets},function(_,j){
+        return '<button class="set'+(done.indexOf(j)>=0?' on':'')+'" onclick="hitPF('+j+',this)">'+(j+1)+'</button>';
+      }).join('')+'</div>'
+    +'<button class="howtog" onclick="this.nextElementSibling.classList.toggle(\'on\')">怎么做 ▾</button>'
+    +'<div class="how">'+PELVIC.h+'<div class="badbox">'+PELVIC.bad+'</div>'+vbtn(PELVIC.q)+'</div>'
+    +'</div>';
+}
+function hitPF(j,el){
+  const k=pkey(TK);let d=LS.get(k,[]);
+  if(d.indexOf(j)>=0)d=d.filter(x=>x!==j);else d.push(j);
+  LS.set(k,d);el.classList.toggle('on');
+}
+function prepDoc(){
+  return PREPDOC.map(function(s){
+    let b='';
+    if(s.k==='list')b='<div class="panel"><ul style="margin:0;padding:var(--s4) var(--s4) var(--s4) var(--s5);font-size:var(--f2);color:var(--t2);line-height:1.7">'
+      +s.x.map(x=>'<li style="margin-bottom:var(--s2)">'+x+'</li>').join('')+'</ul></div>';
+    else if(s.k==='num')b='<div class="panel"><ol style="margin:0;padding:var(--s4) var(--s4) var(--s4) var(--s5);font-size:var(--f2);color:var(--t2);line-height:1.7">'
+      +s.x.map(x=>'<li style="margin-bottom:var(--s2)">'+x+'</li>').join('')+'</ol></div>';
+    else if(s.k==='step')b='<div class="panel">'+s.x.map(x=>
+      '<div class="dl rowline" style="align-items:flex-start"><div class="v mute" style="flex:0 0 56px;text-align:left">'+x[0]+'</div><div class="k">'+x[1]+'</div></div>').join('')+'</div>';
+    else b='<div class="panel">'+s.x.map(x=>
+      '<div class="dl rowline" style="align-items:flex-start"><div class="k"><b>'+x[0]+'</b><br>'+x[1]+'</div></div>').join('')+'</div>';
+    return '<div class="gt" style="margin-top:var(--s4);letter-spacing:0;text-transform:none">'+s.t+'</div>'+b;
+  }).join('');
+}
 function foldBlock(title,sub,items){
   return '<details class="fold panel"><summary>'+title+'<span class="sub">'+sub+'</span><span class="chev">▾</span></summary>'
     +'<div class="body"><ul>'+items.map(x=>'<li>'+x.t+(x.q?' '+vlnk(x.q):'')+'</li>').join('')+'</ul></div></details>';
@@ -575,6 +651,7 @@ function drawToday(){
     h+='<section class="today"><div class="kind"><div class="badge rest">休</div><h2>休息日</h2></div>'
       +'<p class="when">下一次训练 '+(nx.getMonth()+1)+' 月 '+nx.getDate()+' 日 '+WD[nx.getDay()]+'，练 '+(ns.k==='M'?'维持版':ns.k)+'</p></section>'
       +'<div class="note">休息是计划的一部分。肌肉在休息时生长，不在训练时。</div>';
+    h+=pelvicBlock();
     $('#v-today').innerHTML=h;return;
   }
   const t=s.k,p=progressOf(TK,t),pct=p[1]?Math.round(p[0]/p[1]*100):0;
@@ -608,6 +685,7 @@ function drawToday(){
   }).join('')+'</div>';
   h+='<div class="gt">收尾</div>'+foldBlock('收尾','4 分钟',COOL);
   if(p[0]>=p[1]&&p[1]>0)h+='<div class="note info" style="margin-top:var(--s4)"><b>今天练完了。</b>次数填了的话，数据页会自动画曲线，也会在该进阶时提醒你。</div>';
+  h+=pelvicBlock();
   $('#v-today').innerHTML=h;
 }
 function tog(i){openEx=(openEx===i?-1:i);drawToday();}
@@ -693,7 +771,7 @@ function drawEat(){
   h+='<button class="btn quiet block" style="margin-top:var(--s3)" onclick="clearShop()">清空勾选</button>';
   h+='<div class="gt">备餐　一周两次，每次 35 分钟</div>'
     +'<div class="note warn"><b>为什么不一次备六天：</b>合租冰箱塞不下六个饭盒，而且熟食冷藏超过三天就不该吃了。</div>'
-    +'<div class="panel">'+PREP.map(s=>'<div class="dl rowline" style="align-items:flex-start"><div class="v mute" style="flex:0 0 56px;text-align:left">'+s[0]+'</div><div class="k">'+s[1]+'</div></div>').join('')+'</div>';
+    +prepDoc();
   h+='<div class="gt">吃不下怎么办</div><div class="panel">'
     +EATTIPS.map(x=>'<div class="dl rowline"><div class="k"><b>'+x[0]+'</b><br>'+x[1]+'</div></div>').join('')+'</div>';
   h+='<div class="gt">腻了就换，分量不变</div><div class="panel">'
