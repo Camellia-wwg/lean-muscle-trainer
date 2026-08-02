@@ -117,6 +117,11 @@ body{
 .exbody{padding:0 var(--s4) var(--s4) calc(var(--s4) + 24px + var(--s3));display:none}
 .ex.open .exbody{display:block}
 .exbody .presc{font-size:var(--f2);color:var(--t2);margin-bottom:var(--s3);font-variant-numeric:tabular-nums}
+.lvl{
+  margin-top:var(--s2);padding:var(--s3);border-radius:var(--r1);
+  background:var(--accent-soft);color:var(--t2);line-height:1.6;
+}
+.lvl b{color:var(--t1);font-weight:650}
 
 /* 组按钮：最小 48，实际 56 */
 .sets{display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s4)}
@@ -666,7 +671,12 @@ function drawToday(){
   if(t==='M')h+='<div class="note warn"><b>打乱期维持方案。</b>目标不是进步，是不掉。强度降到平时八成，不追任何数字。</div>';
   if(canLevelUp()&&t!=='M')h+='<div class="note good"><h3>该进阶了</h3>上次四组都做到 15 次以上，'+LNAME[CFG.level-1]+' 对你已经太轻。'
     +'<button class="btn block" style="margin-top:var(--s3)" onclick="levelUp()">进阶到 '+(LNAME[CFG.level]||'完成')+'</button></div>';
-  if(!everTrained())h+='<div class="note info"><h3>第一次练，先别管次数</h3>今天的目标是把动作学会，不是把格子填满。每个动作点开怎么做，先看一遍真人演示视频，再空手比划两三次找到发力的地方，然后才开始正式做。第一次少做几个完全没关系，动作错了练一个月也是白练。</div>';
+  if(!everTrained())h+='<div class="note info"><h3>第一次练，先定高度再谈次数</h3>'
+    +'<b>先做一组试试。</b>在当前高度做到<b>还能再做 2 个</b>的时候停下，记住这个数：<br>'
+    +'<b>少于 8 个</b>，太难了，把档位调小一档（L3 换成 L2），手撑得更高更省力<br>'
+    +'<b>超过 15 个</b>，太轻松，调大一档，手撑得更低更吃力<br>'
+    +'<b>落在 8 到 15 之间</b>，就是它，剩下三组照这个做<br>'
+    +'档位在右上角齿轮里改。<b>第一次动作做对比做多重要</b>，每个动作先点开怎么做，照着空手比划两三次找到发力的地方再开始。</div>';
   h+='<div class="gt">热身</div>'+foldBlock('热身','6 分钟 · 必做',WARM);
   h+='<div class="gt">主体</div><div class="panel">'+EX[t].map(function(e,i){
     const done=LS.get(sk(TK,t,i),[]),all=done.length>=e.s,cur=LS.get(rk(TK,t,i),''),lr=lastReps(t,i);
@@ -676,7 +686,9 @@ function drawToday(){
         +'<span class="nm">'+e.n+(e.key?'　'+LNAME[CFG.level-1]:'')+'</span>'
         +'<span class="tally">'+done.length+'/'+e.s+'</span></button>'
       +'<div class="exbody">'
-        +'<div class="presc">'+e.s+' 组 × '+e.r+'</div>'
+        +'<div class="presc">'+e.s+' 组 × '+e.r+'　每组留 2 次余量，别做到力竭'
+          +(e.key?'<div class="lvl"><b>'+LNAME[CFG.level-1]+'　手撑在'+esc(CFG.gear[CFG.level-1]||'')+'</b><br>这个高度大约承担你 '+LPCT[CFG.level-1]+'% 的体重，约 '+Math.round((CFG.w0||61)*LPCT[CFG.level-1]/100)+' 公斤。撑得越高越省力，越接近地面越难。</div>':'')
+          +'</div>'
         +'<div class="sets">'+Array.from({length:e.s},(_,j)=>
           '<button class="set'+(done.indexOf(j)>=0?' on':'')+'" onclick="hit(\''+t+'\','+i+','+j+',this)">'+(j+1)+'</button>').join('')+'</div>'
         +'<div class="field">'+(lr?'<div class="lastv">上次 '+lr.d.slice(5)+'　'+esc(lr.v)+'</div>':'')
